@@ -1,0 +1,40 @@
+	{% include 'top_template.html' %}
+	{% if(logged_in) %}
+		{% if time_to_display_score %}
+		<br>Your score is: {{ quiz_score }}%
+		<br>
+		{% for i in final_question_vs_answer %}
+			Question #{{ loop.index }}<br>
+			Question: {{ i[0] }}<br>
+			Provided Answer: {{ i[1] }}<br>
+			Actual Answer: {{ i[2] }}<br>
+			Score: {{ i[3] }}<br><br><br>
+		{% endfor %}
+
+		<br>Your score is: {{ quiz_score }}%
+		<br>Continue <a href=" {{ url_for('index') }} ">Continue</a><br>
+		<br><br>
+		{% else %}
+		<form action" {{ url_for('quiz', video_id=video_id) }} " method="post">
+	
+			{% for i in question_array_display %}	
+				Question : {{ i[0] }}
+				<br>
+				Answer: <select name="answer{{ loop.index }}">
+					<option value="1">{{ i[2][0] }}</option>
+					<option value="2">{{ i[2][1] }}</option>
+					<option value="3">{{ i[2][2] }}</option>
+					<option value="4">{{ i[2][3] }}</option>
+					<option value="5">{{ i[2][4] }}</option>
+				</select>
+				<br>
+			{% endfor %}
+				<button>Submit</button>
+		</form>
+		<br>
+		{% endif %}
+	{% else %}
+		You must be logged in to take the quiz.  Sorry.
+	{% endif %}
+
+	{% include 'bottom_template.html' %}

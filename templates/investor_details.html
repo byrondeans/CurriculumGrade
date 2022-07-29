@@ -1,0 +1,19 @@
+{% include 'top_template.html' %}
+
+<a href=" {{ url_for('admin') }} ">Admin</a> / <a href=" {{ url_for('investors') }} ">Investors</a> / Investor Details<br><br>
+
+
+<br><br>{% for i in result %}
+Name: {{ i.name }}<br>
+Access Code: {{ i.accesscode }}<br>
+Address: {{ i.address }}<br>
+Phone: {{ i.phone }}<br>
+Email: {{ i.email }}<br>
+Notes: {{ i.notes }}<br>
+Time Limit: {{ i.timelimit }} seconds<br>
+First Access: {{ i.firstaccess | ctime }}<br>
+<br>
+<a href=" {{ url_for('edit_investor_details', investor_id=investor_id) }} ">Edit</a>
+
+{% endfor %}
+{% include 'bottom_template.html' %}

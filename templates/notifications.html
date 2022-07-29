@@ -1,0 +1,18 @@
+{% include 'top_template.html' %}
+Notifications:<br><br>
+
+Friend requests:<br><br>
+{% for i in friend_requests %}
+Friend request from {{ i[8] }} <a href=" {{ url_for('accept_deny_friend', user_id=i[1], accept=1) }} ">Accept</a> | <a href=" {{ url_for('accept_deny_friend', user_id=i[1], accept=0) }} ">Deny</a><br><br>
+{% endfor %}
+<br><br><br>
+
+Recent requests to view your videos and quizzes:<br>
+	{% for request in requests %}
+		Student: {{ request[8] }}<a href="{{ url_for('grant_access_request', video_id=request[3]) }}">Grant</a>
+	{% endfor %}
+
+<br><br><br><br>
+You have {{ num_new_messages }} new messages: <a href=" {{ url_for('messages') }} ">view</a><br><br>
+
+{% include 'bottom_template.html' %}

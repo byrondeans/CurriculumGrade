@@ -1,0 +1,40 @@
+{% include 'top_template.html' %}
+
+<a href=" {{ url_for('admin') }} ">Admin</a> / <a href=" {{ url_for('investors') }} ">Investors</a> / Add Investor<br><br>
+
+{% if investor_added %}
+The investor has been added.  <a href=" {{ url_for('investors') }} ">Continue</a>.<br><br>
+{% else %}
+<form action=" {{ url_for('add_investor') }} " method="post">
+<table>
+
+<tr>
+<td>Name:</td> <td><input type="text" name="name" size="50"></td>
+</tr>
+<tr>
+<td>Access Code:</td><td><input type="text" name="accesscode" size="50"></td>
+</tr>
+<tr>
+<td>Address:</td><td><input type="text" name="address" size="50"></td>
+</tr>
+<tr>
+<td>Phone:</td><td><input type="text" name="phone" size="50"></td>
+</tr>
+<tr>
+<td>Email:</td><td><input type="text" name="email" size="50"></td>
+</tr>
+<tr>
+<td>Notes:</td><td><br><textarea name="notes"  rows="10" cols="50">
+</textarea>
+</td>
+</tr>
+<tr>
+<td>Time Limit:</td><td><input type="text" name="timelimit" size="50"></td>
+</tr>
+<br>
+<br>
+</table>
+<input type="submit">
+</form>
+{% endif %}
+{% include 'bottom_template.html' %}

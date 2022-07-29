@@ -1,0 +1,75 @@
+{% include 'top_template.html' %}
+{% if wall_owner == user_id %}
+Your Wall:
+{% else %}
+Back to <a href=" {{ url_for('wall', wall_owner=user_id) }} ">Your Wall</a>
+{% endif %}
+<br><br>
+<div id="wall_owner_hidden_div" style="display: none;">{{ wall_owner }}</div>
+<br>
+{% if user_id == wall_owner %}
+<form action=" {{ url_for('wall', wall_owner=user_id) }} " method="post">
+<textarea name="wallpost" id="wallpost" rows="10" cols="30">
+</textarea>
+<input type="hidden" id="wall_owner" value="{{ wall_owner }}" >
+<br><br>
+</form>
+<button>Submit</button>
+<br>
+<div id="wall_data">
+<br><br>
+
+<br><br>
+
+
+{% for i in wall_posts_array %}
+{% if i[6] == "wall post" %}
+{% if i[1] == user_id %}
+Post to wall - You:<br>
+{% else %}
+<a href=" {{ url_for('wall', wall_owner=i[1]) }} ">{{ i[4] }}'s wall</a>:<br>
+{% endif %}
+ {{ i[3] }}<br>
+{{ i[2] | ctime }}&nbsp;<a href=" {{ url_for('wall_post_replies', wall_post_num = i[0]) }} ">Reply</a>
+<br>
+{% for k in i[5] %}
+&nbsp; - &nbsp;{{ k[4] }}: {{ k[3] }} &nbsp;{{ k[2] | ctime }}<br>
+{% endfor %}
+<br><br>
+{% else %}
+	{% if i[1] == user_id %}
+		You commented on the video <a href=" {{ url_for('video', video_id=i[8]) }} ">{{ i[9] }}</a>:<br>
+	{% else %}
+		{{ i[4] }} commented on the video <a href=" {{ url_for('video', video_id=i[8]) }} ">{{ i[9] }}</a>:<br>
+	{% endif %}
+	{{ i[3] }}<br>
+	{{ i[2] | ctime }}
+	<br>
+	{% for k in i[5] %}
+		&nbsp; - &nbsp;{{ k[4] }}: {{ k[3] }} &nbsp;{{ k[2] | ctime }}<br>
+	{% endfor %}
+	<br><br>
+{% endif %}
+{% endfor %}
+{% else %}
+<div id="wall_data">
+<br><br><br><br>
+
+ {% for i in wall_posts_array %}
+ Wall post by {{ i[4] }}<br>
+ {{ i[3] }}
+<br>
+  {{ i[2] | ctime }}&nbsp;<a href=" {{ url_for('wall_post_replies', wall_post_num = i[0]) }} ">Reply</a>
+<br>
+{% for k in i[5] %}
+&nbsp; - &nbsp;{{ k[4] }}: {{ k[3] }} &nbsp;{{ k[2] | ctime }}<br>
+{% endfor %}
+<br><br>
+{% endfor %}
+{% endif %}
+
+
+
+
+</div>
+{% include 'bottom_template.html' %}

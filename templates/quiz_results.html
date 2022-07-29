@@ -1,0 +1,23 @@
+{% include 'top_template.html' %}
+	{% if(logged_in) %}
+		{% if display_user_id == user_id %}
+		<br>Your score is: {{ quiz_score }}%
+		{% else %}
+		<br>{{ display_username }}'s score {{ quiz_score }}%
+		{% endif %}
+		<br>
+		{% for i in final_question_vs_answer %}
+			Question #{{ loop.index }}<br>
+			Question: {{ i[0] }}<br>
+			Provided Answer: {{ i[1] }}<br>
+			Actual Answer: {{ i[2] }}<br>
+			Score: {{ i[3] }}<br><br>
+		{% endfor %}
+
+		<br><a href=" {{ url_for('index') }} ">Continue</a><br>
+		<br><br>
+	{% else %}
+		You must be logged in to see this page.  Sorry.
+	{% endif %}
+
+	{% include 'bottom_template.html' %}

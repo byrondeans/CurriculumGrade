@@ -1,0 +1,10 @@
+{% include 'top_template.html' %}
+Friends:<br><br>
+{% for i in friends1 %}
+<a href=" {{ url_for('profile', user_id=i.user_id_accepter) }} ">{{ i.username }}</a> <a href=" {{ url_for('delete_friend', user_id=i.user_id_accepter) }} ">Remove friend</a><br><br>
+{% endfor %}
+{% for i in friends2 %}
+<a href=" {{ url_for('profile', user_id=i.user_id_requester) }} ">{{ i.username }}</a> <a href=" {{ url_for('delete_friend', user_id=i.user_id_requester) }} ">Remove friend</a><br><br>
+{% endfor %}
+{{ msg }}
+{% include 'bottom_template.html' %}

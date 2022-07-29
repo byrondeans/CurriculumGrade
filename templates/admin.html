@@ -1,0 +1,17 @@
+{% include 'top_template.html' %}
+Admin / <br><br>
+
+Admin Section {% if logged_in %}(<a href=" {{ url_for('admin_logout') }} ">Logout</a>):{% endif %}<br>
+{% if not logged_in %}
+<form action=" {{ url_for('admin') }} " method="post">
+        Enter Your Password<input type="text" name="password">
+        <button>Submit</button>
+</form>
+
+{% else %}
+<br>Welcome back<br>
+Last login: {{ last_login | ctime }}
+<br><br>
+<a href=" {{ url_for('investors') }}">Investors</a><br><br>
+{% endif %}
+{% include 'bottom_template.html' %}

@@ -1,0 +1,20 @@
+{% include 'top_template.html' %}
+		{% if cont == 0 %}
+			{% if message %}
+			{{ message }} <a href=" {{ url_for('index') }} ">Continue</a>
+			{% else %}
+			
+			
+		Input security code:
+		<form action=" {{ url_for('basicsecurity') }} " method="post">
+			Security code: <input type="text" name="code">
+			<button>Submit</button>
+		</form>
+			{% endif %}
+		
+		{% else %}
+		Welcome {{ name }}.  You have {{ displaytimelimit }} minutes remaining to use this site. <a href=" {{ url_for('index') }} ">Proceed to Site</a>
+		{% endif %}
+
+		<p>
+{% include 'bottom_template.html' %}

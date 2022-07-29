@@ -1,0 +1,14 @@
+{% include 'top_template.html' %}
+
+{% if logged_in == 0 %}
+<a href=" {{ url_for('wall', wall_owner=user_id) }} ">Wall</a>&nbsp;<a href=" {{ url_for('send_message', to_user=user_id) }} ">Send a message</a><br><br>
+{% endif %}
+
+Profile:
+{% if logged_in %}
+<a href=" {{ url_for('edit_profile') }} ">Edit</a> 
+{% endif %}<br><br>
+{{ profile }}
+<br><br><a href=" {{ url_for('usr', username=username) }} ">See videos</a>
+<br><br><br>
+{% include 'bottom_template.html' %}

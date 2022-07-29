@@ -1,0 +1,16 @@
+{% include 'top_template.html' %}
+
+{% if updating == 1 %}
+You have updated your profile.  <a href=" {{ url_for('profile', user_id=user_id) }} ">Continue</a><br><br>
+{{ profile }}
+{% else %}
+<form action=" {{ url_for('edit_profile') }} " method="post"> 
+<textarea name="profile" rows="10" cols="30">
+{{ profile }}
+</textarea>
+<br><br>
+<input type="submit">
+</form>
+{% endif %}
+<br><br><br>
+{% include 'bottom_template.html' %}

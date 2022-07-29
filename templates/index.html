@@ -1,0 +1,72 @@
+{% include 'top_template.html' %}		
+
+{% if investoraccess %}
+Create account:
+
+		{% if logged_in %}
+		Welcome {% for u in session['username'] %}
+	        {{ u }}
+		{% endfor %}	<a href=" {{ url_for('logout') }} ">Logout</a>&nbsp; <a href=" {{ url_for('notifications') }} ">Notifications ({{ num_notifications }})</a> &nbsp; <a href=" {{ url_for('account') }} ">Account</a>
+		{% else %}
+		<a href=" {{ url_for('register') }} ">Register</a>
+		<a href=" {{ url_for('login') }} ">Login</a>
+		{% endif %}
+		{% if logged_in %}	
+		<form>
+			Search: <input type="text" name="searchstring" id="searchstring">
+			<select name="srch" id="srch">
+				<option value="user">Account Name</option>
+				<option value="video">Video Title</option>
+			</select>	
+		</form>	
+		<button>Search</button>
+		<br>
+		{% endif %}
+		<br>
+
+		{% if logged_in %}
+			<div id="test1">
+			<div id="mainsection">
+			<a href=" {{ url_for('add_video') }} ">Add Video</a>
+	        	<br>
+			Your Videos:<br>
+	        	<br>
+			{% for your_video in your_videos %}	
+				Title: <a href="{{ url_for('video', video_id=your_video.id) }}">{{ your_video['video_title'] }}</a>  <a href="{{ url_for('deletevideo', video_id=your_video.id) }}">Delete</a> 
+			{% endfor %}
+			<br><br>
+			Recent quizes taken by students of your videos:<br>
+			{% for quiz in quizzes %}
+			<a href="{{ url_for('video', video_id=quiz[0]) }}" >{{ quiz.video_title }}</a> taken by {{ quiz[18] }}<a href="{{ url_for('quiz_results', video_id=quiz[0], display_user_id=quiz.id) }}">View</a>
+<br>
+			{% endfor %}
+			<br>
+			Recent requests to view your videos and quizzes:<br>
+			{% for request in requests %}
+			Student: {{ request[8] }}<a href="{{ url_for('grant_access_request', video_id=request[3]) }}">Grant</a>
+			{% endfor %}
+
+
+			<br><br>
+			Recent Videos<br>
+	
+			{% for video in videos %}
+			Title: <a href="{{ url_for('video', video_id=video.id) }}">{{ video['video_title'] }}</a>
+			{% endfor %}
+			</div>
+		{% else %}
+			<br><br>	
+			Recent Videos<br>
+	
+			{% for video in videos %}
+			Title: <a href="{{ url_for('video', video_id=video.id) }}">{{ video['video_title'] }}</a>
+			{% endfor %}
+		{% endif %}
+		<br>
+		</div>	
+		<br>
+
+{% else %}
+This is the first page available to the public.  If you're running this app for the first time, go to your postgresql database and create an adminstrator password, then login to the /admin page, and create an investor.  Copy the investor's code, and enter it <a href="{{ url_for('basicsecurity') }}">here</a>.  You'll be given full acccess to the site for as long as you gave the investor in the admin panel (there's no exact limit to how long that can be, and it's entered in seconds).  Once you're in, you then create a user account to get started.
+{% endif %}
+{% include 'bottom_template.html' %}		

@@ -1,0 +1,10 @@
+{% include 'top_template.html' %}
+
+
+{% if accepted %}
+You have accepted the friend request.  <a href=" {{ url_for('index') }} ">Continue</a>.
+{% else %}
+You have denied the friend request.  <a href=" {{ url_for('index') }} ">Continue</a>.
+{% endif %}
+
+{% include 'bottom_template.html' %}

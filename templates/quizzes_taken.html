@@ -1,0 +1,6 @@
+{% include 'top_template.html' %}
+<br>
+{% for i in result %}
+{{ i.username }} took the quiz at and on {{ i.created_on }}. <a href=" {{ url_for('quiz_results', video_id=video_id, display_user_id=i.user_id) }} ">Details</a><br>
+{% endfor %}
+{% include 'bottom_template.html' %}

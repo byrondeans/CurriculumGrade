@@ -1,0 +1,41 @@
+	{% include 'top_template.html' %}
+	<body>
+		Welcome to the add questions page:<br>
+	{% if proceed %}
+		{% if inserted %}
+		 Your questions have been inserted successfully.<br>
+	<br><a href=" {{ url_for('index') }} ">Continue</a>
+		{% else %}
+		There were problems inserting to the DB.
+		{{ message }}		
+		<br><a href=" {{ url_for('index') }} ">Return</a>
+		{% endif %}	
+	{% else %}
+		{{ message }}
+	<br>
+	<form action" {{ url_for('add_questions', video_id=video_id) }} " method="post">
+		Add Questions:<br><br>
+	
+		<br><a href=" {{ url_for('batch', video_id=video_id) }} ">Add Questions As Batch</a><br>
+		(Add hundreds of questions at a time using our batch feature)<br><br>
+		{% for n in range(1,num_questions+1) %}
+		Q{{ n }}: <input type="text" name="question{{ n }}" size="50"><br>
+		<select name="answers{{ n }}">
+			<option value="1">Answer1</option>
+			<option value="2">Answer2</option>
+			<option value="3">Answer3</option>
+			<option value="4">Answer4</option>
+			<option value="5">Answer5</option>
+		</select>
+		Choice1: <input type="text" name="q{{ n }}choice1" size="100"><br>
+		Choice2: <input type="text" name="q{{ n }}choice2" size="100"><br>
+		Choice3: <input type="text" name="q{{ n }}choice3" size="100"><br>
+		Choice4: <input type="text" name="q{{ n }}choice4" size="100"><br>
+		Choice5: <input type="text" name="q{{ n }}choice5" size="100"><br>
+		{% endfor %}
+		<button>Submit</button>
+	</form>
+	<br>	
+	{% endif %}
+
+	{% include 'bottom_template.html' %}

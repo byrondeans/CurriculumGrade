@@ -1,0 +1,34 @@
+	{% include 'top_template.html' %}
+Explanation: Each question that will appear to users taking the quiz is separated by the characters 1***###1 and 2!!!%%%2 before and after.  The example below shows code to populate a two-question quiz, with the second question being randomly selected from two possible questions, "What is the population of England?" or "What is the population of Scotland?".<br><br>
+
+Each question that will appear to users taking the quiz is separated by the characters 1***###1 and 2!!!%%%2 before and after.  The next code that appears, 3$$$@@3 is preceded by the question number its data is relevant to: in the example below, the first 3$$$@@3 has a 1 before it, and the second no number before it; after that, the next 3$$$@@3 has the number 2 before it, signifying the coming data is relevant to the second question.<br><br>
+The next character sequence is 4***$$$4, followed by q1=.  The first question is put after q1=.  After the next 4***$$$4 pa1= is followed by the number of the answer to the first question on the dropdown list.  There are always 5 possible answers on the drop down list.  These come in sequence after the next 4***$$$4 and after pchoices1.  The answers are separated by the characters ;;;&&&.  In this case the first choice, "1.17 million", is the correct answer.
+<br><br>
+The next question will be randomly selected from the two possibilities, so will be either "What is the population of England?" or "What is the population of Scotland?".  This is to prevent students from copying from each other.  Where it says pa1=2 after 4***$$$4, it tells the computer that the correct choice is the second, which is 55.98 million.  Where it says pa2=3 after 4***$$$4, it tells the computer that the correct choice is the third, or 5.45 million, the population of Scotland.<br><br> 
+
+
+1***###1<br>
+&emsp;	2!!!%%%2<br>
+&emsp;&emsp;1 3$$$@@3<br>
+&emsp;&emsp;&emsp;	4***$$$4 q1=What is the population of Cyprus?<br>
+&emsp;&emsp;&emsp;	4***$$$4 pa1=1<br>
+&emsp;&emsp;&emsp;	4***$$$4 pchoices1=1.17 million;;;&&&2.5 million;;;&&&.5 million;;;&&&4 million;;;&&&1.8 million<br>
+&emsp;&emsp;&emsp;	4***$$$4<br>
+&emsp;&emsp;	3$$$@@3<br>
+&emsp;	2!!!%%%2<br>
+1***###1<br>
+&emsp;	2!!!%%%2<br>
+&emsp;&emsp;	2 3$$$@@3<br>
+&emsp;&emsp;&emsp;	4***$$$4 q1=What is the population of England?<br>
+&emsp;&emsp;&emsp;	4***$$$4 pa1=2<br>
+&emsp;&emsp;&emsp;	4***$$$4 pchoices1=30.31 million;;;&&&55.98 million;;;&&&47.2 million;;;&&&79.98 million;;;&&&123.11 million<br>
+&emsp;&emsp;&emsp;	4***$$$4<br>
+&emsp;&emsp;	3$$$@@3<br>
+&emsp;&emsp;&emsp;	4***$$$4 q2=What is the population of Scotland?<br>
+&emsp;&emsp;&emsp;	4***$$$4 pa2=3<br>
+&emsp;&emsp;&emsp;	4***$$$4 pchoices2=1.17 million;;;&&&3.18 million;;;&&&5.45 million;;;&&&8.78 million;;;&&&10.1 million<br>		
+&emsp;&emsp;&emsp;	4***$$$4<br>
+&emsp;&emsp;	3$$$@@3<br>
+&emsp;	2!!!%%%2<br>
+1***###1
+	{% include 'bottom_template.html' %}

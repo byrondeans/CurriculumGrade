@@ -1,0 +1,9 @@
+{% include 'top_template.html' %}
+
+Account:<br><br>
+<a href=" {{ url_for('wall', wall_owner=user_id) }} ">Wall</a><br><br>
+<a href=" {{ url_for('friends') }} ">Friends ({{ num_friends }})</a><br><br>
+<a href=" {{ url_for('messages') }} ">Messages ({{ num_new_messages }})</a><br><br>
+<a href=" {{ url_for('profile', user_id=user_id) }} ">My Profile</a>
+<br><br><br>
+{% include 'bottom_template.html' %}

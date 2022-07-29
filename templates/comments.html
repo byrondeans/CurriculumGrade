@@ -1,0 +1,8 @@
+{% include 'top_template.html' %}
+Messages:<br>
+<br>
+{% for i in display_array_final|reverse %}
+<a href=" {{ url_for('send_message', to_user=i[0]) }} ">{{ i[1] }} ({{ i[3] }})</a><br><br>
+{% endfor %}
+	
+{% include 'bottom_template.html' %}

@@ -1,0 +1,9 @@
+
+	{% include 'top_template.html' %}
+	{% if logged_out %}
+	You have been logged out: <a href=" {{ url_for('index') }} ">Continue</a>	
+	{% else %}
+	You came here unnecessarily: <a href=" {{ url_for('index') }} ">Continue</a>
+	{% endif %}
+
+	{% include 'bottom_template.html' %}

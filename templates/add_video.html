@@ -1,0 +1,27 @@
+{% include 'top_template.html' %}
+
+	Welcome to the add video page:<br>
+	{% if proceed %}
+		{% if inserted %}
+		Thank you {{ user }}.  Your video has been inserted successfully.<br>Now, it's time to add questions.
+	<br><a href=" {{ url_for('add_questions', video_id=ro) }} ">Continue</a>
+		{% else %}
+		There were problems inserting to the DB.
+		
+		<br><a href=" {{ url_for('add_video') }} ">Return</a>
+		{% endif %}	
+	{% else %}
+		{{ message }}
+	<br>
+	<form action" {{ url_for('add_video') }} " method="post">
+		Add Video: <br>
+		Title: <input type="text" name="title" size="50"><br>
+		Video Address: <input type="text" name="video_address" size="100"><br>
+		Number of Questions: <input type="text" name="num_q" size="5"><br>
+		Description: <input type="text" name="description" size="500"><br>
+		Require my approval to see lesson content and take quiz: <input type="checkbox" name="requireapproval" value="requireapproval"><br>
+		<button>Submit</button>
+	</form>	
+	{% endif %}
+
+{% include 'bottom_template.html' %}

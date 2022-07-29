@@ -1,0 +1,12 @@
+{% include 'top_template.html' %}
+{% if posting == 0 %}
+Reply to comment:<br>
+
+<form action=" {{ url_for('reply_to_comment', commentnum = commentnum) }} " method="post">
+        Enter Your Reply: <input type="text" name="reply" id="reply">
+	<button>Submit</button>
+</form>
+{% else %}
+You have submitted your comment.  <a href=" {{ url_for('video', video_id = video_id) }} ">Continue</a>
+{% endif %}
+{% include 'bottom_template.html' %}

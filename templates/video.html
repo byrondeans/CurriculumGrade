@@ -1,0 +1,54 @@
+{% include 'top_template.html' %}
+	<br>
+	Video Title: {{ video[6] }}<br>
+	Description: {{ video[5] }}<br>
+	Address: {{ video[3] }}<br>
+	
+	{% if quiz_not_taken %}
+		{% if require_preapprove %}
+			{% if preapproved %}
+			Your request has been approved by {{ videos_username }}.  <a href=" {{ url_for('quiz', video_id=video_id) }} ">Take the Quiz</a>			  
+			{% else %}
+				{% if already_requested %}
+					You've already requested approval.  Please wait for the instructor to approve your request. 
+				{% elif display_request_approval_link %}	
+			<a href=" {{ url_for('request_video_approval', video_id=video_id) }} ">Request Approval From {{ videos_username }}</a>
+				{% endif %}
+			{% endif %}
+		{% else %}		
+		<a href=" {{ url_for('quiz', video_id=video_id) }} ">Take the Quiz</a>			  	  	  {% endif %}
+	<br>
+	More videos by this account holder: <a href=" {{ url_for('usr', username=videos_username) }} ">Proceed</a>
+	<br>
+	Video username: {{ videos_username }}
+	<br>	
+	{% else %}
+	You have taken this quiz.  Your score was {{ num_correct }} out of {{ total_questions }}.  Or {{ percentage }}%. <a href=" {{ url_for('quiz_results', video_id=video_id, display_user_id=user_id) }} ">Details</a>
+	{% endif %}
+<br>
+{% if video_by_user_viewing %}
+{{ num_users_have_taken_quiz }} users have taken this video's quiz.  <a href=" {{ url_for('quizzes_taken', video_id=video_id) }} ">Details</a>.
+{% endif %}
+<br><br>
+<form action=" {{ url_for('comments') }} " method="post">
+        Enter Your Comment: <input type="text" name="comment" id="comment">
+	<input type="hidden" id="to_video" value="{{ video_id }}">
+</form>
+<button data-vote="yes">Submit</button>
+
+<br><br>
+<br><br>
+<br>Comments:<br>
+<div id="comments">
+{% for j in comments_array %}
+{{ j[1] }}: {{ j[2] }} &nbsp; - &nbsp;{{ j[3] | ctime }}&nbsp;<a href=" {{ url_for('reply_to_comment', commentnum = j[0]) }} ">Reply</a>
+<br>
+Replies:<br>
+{% for k in j[4] %}
+&nbsp; - &nbsp;{{ k[4] }}: {{ k[3] }} &nbsp;{{ k[2] | ctime }}<br>
+{% endfor %}
+<br>
+{% endfor %}
+</div>
+
+	{% include 'bottom_template.html' %}

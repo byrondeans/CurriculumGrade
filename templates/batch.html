@@ -1,0 +1,34 @@
+	{% include 'top_template.html' %}
+		Welcome to the add batch questions page:<br>
+	{% if proceed %}
+		{% if inserted %}
+		 Your questions have been inserted successfully.<br>
+	<br><a href=" {{ url_for('index') }} ">Continue</a>
+		{% else %}
+		There were problems inserting to the DB.
+		Message: {{ message }}	
+		<br>test_array is: {{ test_array }}<br><br>
+		test_array2 is: {{ test_array2 }}<br><br>
+		final_array is: {{ final_array }}<br><br>
+		The variable j is: {{ j }}
+		<br>
+		The variable integrity_msg is: {{ integrity_msg }}<br>	
+		<br><a href=" {{ url_for('index') }} ">Return</a>
+		{% endif %}	
+	{% else %}
+		{{ message }}
+	<br><br>
+	<a href=" {{ url_for('view_batch_code') }} ">View Sample Batch Code With Explanation</a><br>
+	<a href=" {{ url_for('view_batch_code_generator') }} ">View Sample Batch Code Generator Written in the Perl Programming Language</a><br>
+	<br><br>
+	<form action" {{ url_for('batch', video_id=video_id) }} " method="post">
+		Add Batch Questions:<br><br>
+	
+		<textarea name="batch_questions" cols="80" rows="24"></textarea><br>
+		<button>Submit</button>
+	</form>
+	<br>
+		
+	{% endif %}
+
+	{% include 'bottom_template.html' %}

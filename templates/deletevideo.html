@@ -1,0 +1,9 @@
+{% include 'top_template.html' %}
+
+{% if video_deleted %}
+Your video has been successfully deleted.  <a href=" {{ url_for('index') }} ">Continue</a>
+{% else %}
+Something went wrong.  Your video could not be deleted.
+{% endif %}
+
+{% include 'bottom_template.html' %}

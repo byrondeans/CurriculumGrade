@@ -1,0 +1,17 @@
+		<p>
+		Search results:<br>
+		
+		<p>
+		<a href=" {{ url_for('index') }} ">Back</a>
+		<p>	
+		{% if select == "user" %}	
+		{% for user in users %}
+		Account Title: {{ user.username }} <a href=" {{url_for('usr', username=user.username) }} ">details</a><br>
+		{% endfor %}
+		<br>
+		{% else %}
+		{% for video in videos %}
+		Title: {{ video.video_title }} <a href=" {{url_for('video', video_id=video.id) }} ">details</a> <br>
+		{% endfor %}
+		<br>
+		{% endif %}

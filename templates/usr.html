@@ -1,0 +1,7 @@
+{% include 'top_template.html' %}
+		Welcome to <a href= {{ url_for('profile', user_id=user_id) }}>{{ username }}</a> &nbsp; {% if logged_in_and_not_user_himself %}<a href= {{ url_for('request_friend', user_id=user_id) }}>Send Friend Request</a>{% endif %}<br><br>
+		Below are videos for my account:<br>
+		{% for i in videos %}
+		<a href=" {{ url_for('video', video_id=i.id) }} ">{{ i.video_title }}</a><br>
+		{% endfor %}	
+{% include 'bottom_template.html' %}

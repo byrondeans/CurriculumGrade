@@ -1,0 +1,19 @@
+	{% include 'top_template.html' %}
+		Create account:
+		{% if registered==0 %}
+		
+		<form action=" {{ url_for('register') }} " method="post">
+			Username: <input type="text" name="username">
+			Password: <input type="text" name="password">
+			<button>Submit</button>
+		</form>
+                {{ message }}
+		{% else %}
+		new_user_id is: {{ new_user_id }}
+		<p>
+		{{ message }}<a href=" {{ url_for('index') }} ">Continue</a>
+		<p>
+		{% endif %}
+		
+	
+	{% include 'bottom_template.html' %}

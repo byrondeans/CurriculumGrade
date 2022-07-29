@@ -1,0 +1,33 @@
+{% include 'top_template.html' %}
+
+<a href=" {{ url_for('admin') }} ">Admin</a> / <a href=" {{ url_for('investors') }} ">Investors</a> / Investor Page Views<br><br>
+
+Showing {{ result_length }} results
+<br>
+<br>
+
+
+Investor Page Views:<br><br>
+<form action=" {{ url_for('investor_page_views', investor_id=investor_id) }} " method="post">
+<table>
+<tr>
+<td>Beginning/Earlier Time:</td><td><input type="text" name="start" value="{{ start_value }}"></td>
+</tr>
+<tr>
+<td>End/Later Time:</td><td><input type="text" name="end" value="{{ end_value }}"></td>
+</tr>
+<tr>
+<td colspan=2><input type="submit"></td>
+</tr>
+</table>
+</form> 
+
+<table>
+{% for i in result %}
+<tr>
+<td>{{ i.ip_address }}</td><td>Page:</td><td>{{ i.page }}</td><td>Time:</td><td>{{ i.time | ctime }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% include 'bottom_template.html' %}

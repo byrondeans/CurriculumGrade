@@ -1,0 +1,19 @@
+{% include 'top_template.html' %}
+<div id="page_owner_id" style="display: none;">{{ page_owner }}</div>
+<div id="to_user_id" style="display: none;">{{ to_user }}</div>
+<a href="#anchor1">Jump to bottom</a><br><br>
+<div>Messages: <span id="messages"><br>{% for msg in result2 %}
+{{ msg.username }}: {{ msg.message }}<br>
+Msg sent: {{ msg.time_sent | ctime }}<br>
+<br>
+{% endfor %}
+</span></div>
+
+<form action=" {{ url_for('messages') }} " method="post">
+	Enter Your Message: <input type="text" name="message" id="message">
+	<input type="hidden" id="to_user" value="{{ to_user }}">
+	<input type="hidden" id="username_to" value="{{ username_to }}">
+</form>
+<button>Submit</button>
+<div id="anchor1"></div>
+{% include 'bottom_template.html' %}

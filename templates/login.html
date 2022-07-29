@@ -1,0 +1,16 @@
+	{% include 'top_template.html' %}
+	<body>{% if logged_in == 0 %}
+		Login to account:
+		<form action=" {{ url_for('login') }} " method="post">
+			Username: <input type="text" name="username">
+			Password: <input type="text" name="password">
+			<button>Submit</button>
+		</form>
+		{% else %}
+
+                <p>
+		Welcome back	<a href=" {{ url_for('index') }}">Continue</a>
+		{% endif %}
+		<p>
+
+	{% include 'bottom_template.html' %}

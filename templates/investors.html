@@ -1,0 +1,15 @@
+{% include 'top_template.html' %}
+
+<a href=" {{ url_for('admin') }} ">Admin</a> / Investors<br><br>
+
+{% if deleted_investor %}
+The investor has been deleted.  <a href=" {{ url_for('investors') }} ">Continue</a>.
+{% else %}
+
+Investors:<a href=" {{ url_for('add_investor') }} ">Add</a><br><br>
+{% for i in result %}
+{{ i.name }} <a href=" {{ url_for('investor_details', investor_id=i.id) }} ">Details</a>&nbsp;<a href=" {{ url_for('investor_page_views', investor_id=i.id) }} ">Page Views</a>&nbsp;<a href=" {{ url_for('delete_investor', investor_id=i.id) }} ">Delete</a><br>
+{% endfor %}
+{% endif %}
+
+{% include 'bottom_template.html' %}

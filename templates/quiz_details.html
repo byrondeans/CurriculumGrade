@@ -1,0 +1,16 @@
+	{% include 'top_template.html' %}
+	<br>
+	{% if logged_in %}
+	Final score: {{ final_score }}
+	<br>
+	{% for i in question_vs_answer %}
+	Question: {{ i[0] }}<br>
+	Answer provided: {{ i[1] }}<br>
+	Real answer: {{ i[2] }}<br>
+	{% endfor %}	
+
+
+	{% endif %}	
+	<br>
+
+	{% include 'bottom_template.html' %}

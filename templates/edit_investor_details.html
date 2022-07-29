@@ -1,0 +1,44 @@
+{% include 'top_template.html' %}<br>
+
+<a href=" {{ url_for('admin') }} ">Admin</a> / <a href=" {{ url_for('investors') }} ">Investors</a> / <a href=" {{ url_for('investor_details', investor_id=investor_id) }} ">Investor Details</a> / Edit Investor Details<br><br>
+
+<form action=" {{ url_for('edit_investor_details', investor_id=investor_id) }} " method="post">
+<table>
+
+{% for i in result %}
+<tr>
+<td>Name:</td> <td><input type="text" name="name" value="{{ i.name }}" size="50"></td>
+</tr>
+<tr>
+<td>Access Code:</td><td><input type="text" name="accesscode" value="{{ i.accesscode }}" size="50"></td>
+</tr>
+<tr>
+<td>Address:</td><td><input type="text" name="address" value="{{ i.address }}" size="50"></td>
+</tr>
+<tr>
+<td>Phone:</td><td><input type="text" name="phone" value="{{ i.phone }}" size="50"></td>
+</tr>
+<tr>
+<td>Email:</td><td><input type="text" name="email" value="{{ i.email }}" size="50"></td>
+</tr>
+<tr>
+<td>Notes:</td><td><br><textarea name="notes"  rows="10" cols="50">
+{{ i.notes }}
+</textarea>
+</td>
+</tr>
+<tr>
+<td>Time Limit:</td><td><input type="text" name="timelimit" value="{{ i.timelimit }}" size="50"></td>
+</tr>
+<tr>
+<td>First Access:</td><td><input type="text" name="firstaccess" value="{{ i.firstaccess }}" size="50"></td>
+</tr>
+<br>
+<br>
+{% endfor %}
+</table>
+<input type="submit">
+</form>
+
+
+{% include 'bottom_template.html' %}

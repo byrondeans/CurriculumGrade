@@ -1,0 +1,12 @@
+{% include 'top_template.html' %}
+{% if posting == 0 %}
+Reply to comment:<br>
+{{ wall_post_num }}
+<form action=" {{ url_for('wall_post_replies', wall_post_num = wall_post_num) }} " method="post">
+        Enter Your Reply: <input type="text" name="reply" id="reply">
+        <button>Submit</button>
+</form>
+{% else %}
+You have submitted your reply.  <a href=" {{ url_for('wall', wall_owner=last_wall) }} ">Continue</a>
+{% endif %}
+{% include 'bottom_template.html' %}
